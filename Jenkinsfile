@@ -16,12 +16,10 @@ stage('test: unit'){
 }
 
 stage('deploy: repo'){
-	input "Deploy on repo?"
-	echo "Deploying on repo"
 	node {
 		mvnHome = tool 'M3'
 		sh "'${mvnHome}/bin/mvn' versions:set"
-		sh "'${mvnHome}/bin/mvn' -Dmaven.test.skip -DskipTests versions:set deploy"
+		sh "'${mvnHome}/bin/mvn' -Dmaven.test.skip -DskipTests deploy"
 		sh "'${mvnHome}/bin/mvn' scm:tag"
 	}
 }
