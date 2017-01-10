@@ -71,13 +71,25 @@
                     <encoding>utf-8</encoding>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.3</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>1.9.5</version>
+                <configuration>
+                    <tag>${project.artifactId}-${project.version}</tag>
+                </configuration>
+            </plugin>
         </plugins>
 
         <extensions>
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh</artifactId>
-                <version>2.4</version>
+                <artifactId>wagon-ssh-external</artifactId>
+                <version>2.10</version>
             </extension>
         </extensions>
     </build>
@@ -87,13 +99,13 @@
         <repository>
             <id>COLARDYN IT official repo</id>
             <name>HWBOT official repo</name>
-            <url>scp://repo.hwbot.org/home/ubuntu/.m2/repository</url>
+            <url>scpexe://repo.hwbot.org/home/ubuntu/.m2/repository</url>
         </repository>
         <!-- use the following if you ARE using a snapshot version. -->
         <snapshotRepository>
             <id>COLARDYN IT official repo</id>
             <name>HWBOT official snapshot repo</name>
-            <url>scp://repo.hwbot.org/home/ubuntu/.m2/repository</url>
+            <url>scpexe://repo.hwbot.org/home/ubuntu/.m2/repository</url>
         </snapshotRepository>
     </distributionManagement>
 
