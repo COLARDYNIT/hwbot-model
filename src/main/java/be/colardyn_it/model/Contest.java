@@ -128,8 +128,7 @@ public class Contest implements java.io.Serializable {
         this.published = published;
     }
 
-    @Column(name = "LEVEL", nullable = false)
-    @NotNull
+    @Column(name = "LEVEL")
     public Integer getLevel() {
         return this.level;
     }
