@@ -4,7 +4,7 @@
 
     <groupId>be.colardyn_it</groupId>
     <artifactId>hwbot-model</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.201701120852</version>
     <packaging>jar</packaging>
 
     <name>hwbot-model</name>
@@ -77,7 +77,7 @@
                 <artifactId>versions-maven-plugin</artifactId>
                 <version>2.3</version>
                 <configuration>
-                    <newVersion>1.0.${maven.build.timestamp}</newVersion>
+                    <newVersion>${project.artifact.selectedVersion.majorVersion}.${project.artifact.selectedVersion.minorVersion}.${maven.build.timestamp}</newVersion>
                 </configuration>
             </plugin>
             <plugin>
