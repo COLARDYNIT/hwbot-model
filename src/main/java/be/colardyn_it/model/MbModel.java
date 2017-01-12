@@ -27,7 +27,7 @@ public class MbModel implements java.io.Serializable {
     private String name;
     private String safeName;
     private Boolean visible;
-    private Date releaseDate;
+
 
 
     private volatile Boolean selected;
@@ -129,16 +129,6 @@ public class MbModel implements java.io.Serializable {
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
-    }
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "release_date", nullable = true)
-    public Date getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
     }
 
     @javax.persistence.Transient

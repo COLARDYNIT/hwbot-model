@@ -24,7 +24,7 @@ public class MemoryProduct implements java.io.Serializable {
     private Manufacturer manufacturer;
     private String label;
     private Boolean visible;
-    private Date releaseDate;
+
 
     public MemoryProduct() {
     }
@@ -79,13 +79,4 @@ public class MemoryProduct implements java.io.Serializable {
         this.visible = visible;
     }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "release_date", nullable = true)
-    public Date getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
-    }
 }
