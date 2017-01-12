@@ -20,6 +20,8 @@ public class PsuProduct implements java.io.Serializable {
     private Integer groupId;
     private Manufacturer manufacturer;
     private String name;
+    private Date releaseDate;
+
 
 
     public PsuProduct() {
@@ -61,6 +63,16 @@ public class PsuProduct implements java.io.Serializable {
 
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "release_date", nullable = true)
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
 }

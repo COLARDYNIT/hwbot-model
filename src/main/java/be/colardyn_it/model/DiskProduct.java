@@ -24,7 +24,7 @@ public class DiskProduct implements java.io.Serializable {
     private Manufacturer manufacturer;
     private DiskType diskType;
     private String name;
-
+    private Date releaseDate;
 
 
     public DiskProduct() {
@@ -89,6 +89,16 @@ public class DiskProduct implements java.io.Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "release_date", nullable = true)
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
 }

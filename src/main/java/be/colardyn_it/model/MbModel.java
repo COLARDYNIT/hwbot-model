@@ -27,6 +27,7 @@ public class MbModel implements java.io.Serializable {
     private String name;
     private String safeName;
     private Boolean visible;
+    private Date releaseDate;
 
 
 
