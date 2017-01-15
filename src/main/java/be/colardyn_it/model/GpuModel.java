@@ -42,10 +42,6 @@ public class GpuModel implements java.io.Serializable {
     private String safeName;
     private Date releaseDate;
 
-    private Boolean unlockableCores;
-    private String deviceId;
-
-
     public GpuModel() {
     }
 
@@ -58,7 +54,7 @@ public class GpuModel implements java.io.Serializable {
     }
 
     public GpuModel(Socket socket, Memory memory, GpuCore gpuCore, int cores, String keywords, String model, Integer coreSpeed, Integer memSpeed, Integer memBus,
-                    Integer memSize, String pipelines, String vertexShaders, Boolean sliCapable, Boolean marked, Integer heat, String rop, String streamProcessors, Boolean unlockableCores, String deviceId) {
+                    Integer memSize, String pipelines, String vertexShaders, Boolean sliCapable, Boolean marked, Integer heat, String rop, String streamProcessors) {
         this.socket = socket;
         this.memory = memory;
         this.gpuCore = gpuCore;
@@ -76,9 +72,6 @@ public class GpuModel implements java.io.Serializable {
         this.heat = heat;
         this.rop = rop;
         this.streamProcessors = streamProcessors;
-        this.unlockableCores = unlockableCores;
-        this.deviceId = deviceId;
-
     }
 
     @PrePersist
@@ -289,25 +282,6 @@ public class GpuModel implements java.io.Serializable {
 
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
-    }
-
-    @Column(name = "unlockable_cores")
-    @Type(type = "yes_no")
-    public Boolean getUnlockableCores() {
-        return unlockableCores;
-    }
-
-    public void setUnlockableCores(Boolean unlockableCores) {
-        this.unlockableCores = unlockableCores;
-    }
-
-    @Column(name = "device_id")
-    public String getDeviceId() {
-        return deviceId;
-    }
-
-    public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
     }
 
 }
