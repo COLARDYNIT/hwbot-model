@@ -54,7 +54,7 @@ public class GpuFamily implements java.io.Serializable {
         this.familyId = familyId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MANUFACTURER_ID", nullable = false)
     @NotNull
     @NotFound(action = NotFoundAction.IGNORE)

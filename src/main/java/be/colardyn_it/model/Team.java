@@ -87,7 +87,7 @@ public class Team implements java.io.Serializable {
     }
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "COUNTRY_ID", nullable = true)
     @NotFound(action = NotFoundAction.IGNORE)
     public Country getCountry() {

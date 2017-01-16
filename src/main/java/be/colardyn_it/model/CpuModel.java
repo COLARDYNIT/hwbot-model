@@ -87,7 +87,7 @@ public class CpuModel implements java.io.Serializable {
         this.cpuId = cpuId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SOCKET_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public Socket getSocket() {
@@ -98,7 +98,7 @@ public class CpuModel implements java.io.Serializable {
         this.socket = socket;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SUBFAMILY_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public CpuSubfamily getCpuSubfamily() {
@@ -109,7 +109,7 @@ public class CpuModel implements java.io.Serializable {
         this.cpuSubfamily = cpuSubfamily;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CORE_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public CpuCore getCpuCore() {

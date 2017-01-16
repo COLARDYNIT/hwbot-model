@@ -91,7 +91,7 @@ public class GpuModel implements java.io.Serializable {
         this.gpuId = gpuId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SOCKET_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public Socket getSocket() {
@@ -102,7 +102,7 @@ public class GpuModel implements java.io.Serializable {
         this.socket = socket;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "MEM_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public Memory getMemory() {
@@ -113,7 +113,7 @@ public class GpuModel implements java.io.Serializable {
         this.memory = memory;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CORE_ID", nullable = false)
     @NotNull
     @NotFound(action = NotFoundAction.IGNORE)

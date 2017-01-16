@@ -62,7 +62,7 @@ public class ContestBenchmark implements java.io.Serializable {
         this.contest = contest;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "APPLICATION_ID", nullable = false)
     @NotNull
     public Application getApplication() {
@@ -108,7 +108,7 @@ public class ContestBenchmark implements java.io.Serializable {
         this.enddate = enddate;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "contestBenchmark")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "contestBenchmark")
     public Set<BenchmarkLimitation> getBenchmarkLimitations() {
         return this.benchmarkLimitations;
     }

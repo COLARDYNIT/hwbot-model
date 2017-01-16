@@ -48,7 +48,7 @@ public class DiskProduct implements java.io.Serializable {
         this.groupId = groupId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DISK_CONTROLLER_ID", nullable = true)
     @NotFound(action = NotFoundAction.IGNORE)
     public DiskController getDiskController() {
@@ -59,7 +59,7 @@ public class DiskProduct implements java.io.Serializable {
         this.diskController = diskController;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MANUFACTURER_ID", nullable = true)
     @NotFound(action = NotFoundAction.IGNORE)
     public Manufacturer getManufacturer() {
@@ -70,7 +70,7 @@ public class DiskProduct implements java.io.Serializable {
         this.manufacturer = manufacturer;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DISK_TYPE_ID", nullable = true)
     @NotFound(action = NotFoundAction.IGNORE)
     public DiskType getDiskType() {

@@ -135,7 +135,7 @@ public class GpuProduct implements java.io.Serializable {
         this.safeName = model;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "MANUFACTURER_ID")
     public Manufacturer getManufacturer() {
         return manufacturer;
@@ -145,7 +145,7 @@ public class GpuProduct implements java.io.Serializable {
         this.manufacturer = manufacturer;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "GPU_ID")
     public GpuModel getGpuModel() {
         return gpuModel;

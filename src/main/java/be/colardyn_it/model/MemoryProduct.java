@@ -58,7 +58,7 @@ public class MemoryProduct implements java.io.Serializable {
         this.label = label;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "MANUFACTURER_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public Manufacturer getManufacturer() {

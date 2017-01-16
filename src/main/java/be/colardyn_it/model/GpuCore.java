@@ -62,7 +62,7 @@ public class GpuCore implements java.io.Serializable {
         this.coreId = coreId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FAMILY_ID", nullable = false)
     @NotNull
     @NotFound(action = NotFoundAction.IGNORE)
@@ -130,7 +130,7 @@ public class GpuCore implements java.io.Serializable {
         this.manufacturingProcess = manufacturingProcess;
     }
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER, mappedBy = "gpuCore")
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "gpuCore")
     public Set<GpuModel> getGpuModels() {
         return this.gpuModels;
     }

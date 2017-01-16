@@ -58,7 +58,7 @@ public class MbChipset implements java.io.Serializable {
         this.chipsetId = chipsetId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MANUFACTURER_ID", nullable = false)
     @NotNull
     @NotFound(action = NotFoundAction.IGNORE)
@@ -101,7 +101,7 @@ public class MbChipset implements java.io.Serializable {
         this.visible = visible;
     }
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER, mappedBy = "mbChipset")
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "mbChipset")
     public Set<MbModel> getMbModels() {
         return this.mbModels;
     }

@@ -44,7 +44,7 @@ public class Memoryrating implements java.io.Serializable {
         this.memratingId = memratingId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEM_ID", nullable = false)
     @NotNull
     @NotFound(action = NotFoundAction.IGNORE)

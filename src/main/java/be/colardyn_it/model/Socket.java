@@ -68,7 +68,7 @@ public class Socket implements java.io.Serializable {
         this.type = type;
     }
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER, mappedBy = "socket")
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "socket")
     @NotFound(action = NotFoundAction.IGNORE)
     public Set<MbModel> getMbModels() {
         return this.mbModels;

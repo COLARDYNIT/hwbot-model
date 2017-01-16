@@ -54,7 +54,7 @@ public class PsuProduct implements java.io.Serializable {
         this.name = name;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "MANUFACTURER_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public Manufacturer getManufacturer() {

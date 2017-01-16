@@ -74,7 +74,7 @@ public class Memory implements java.io.Serializable {
         this.visible = visible;
     }
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER, mappedBy = "memory")
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "memory")
     public Set<GpuModel> getGpuModels() {
         return this.gpuModels;
     }
@@ -83,7 +83,7 @@ public class Memory implements java.io.Serializable {
         this.gpuModels = gpuModels;
     }
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER, mappedBy = "memory")
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "memory")
     public Set<Memoryrating> getMemoryratings() {
         return this.memoryratings;
     }

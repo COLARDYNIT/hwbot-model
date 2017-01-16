@@ -58,7 +58,7 @@ public class BenchmarkLimitation implements java.io.Serializable {
         this.limitationId = limitationId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TYPE_ID", nullable = false)
     @NotNull
     public BenchmarkLimitationType getBenchmarkLimitationType() {
@@ -80,7 +80,7 @@ public class BenchmarkLimitation implements java.io.Serializable {
         this.contestBenchmark = contestBenchmark;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "benchmarkLimitation")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "benchmarkLimitation")
     public Set<BenchmarkLimitationConfiguration> getBenchmarkLimitationConfigurations() {
         return this.benchmarkLimitationConfigurations;
     }

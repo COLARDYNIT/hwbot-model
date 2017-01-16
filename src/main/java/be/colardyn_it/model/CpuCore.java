@@ -71,7 +71,7 @@ public class CpuCore implements java.io.Serializable {
         this.coreId = coreId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FAMILY_ID", nullable = false)
     @NotNull
     @NotFound(action = NotFoundAction.IGNORE)
@@ -177,7 +177,7 @@ public class CpuCore implements java.io.Serializable {
         this.launchDate = launchDate;
     }
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER, mappedBy = "cpuCore")
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "cpuCore")
     public Set<CpuModel> getCpuModels() {
         return this.cpuModels;
     }

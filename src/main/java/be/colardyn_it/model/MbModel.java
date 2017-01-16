@@ -67,7 +67,7 @@ public class MbModel implements java.io.Serializable {
         this.modelId = modelId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SOCKET_ID", nullable = true)
     @NotFound(action = NotFoundAction.IGNORE)
     public Socket getSocket() {
@@ -78,7 +78,7 @@ public class MbModel implements java.io.Serializable {
         this.socket = socket;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MANUFACTURER_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public Manufacturer getManufacturer() {
@@ -89,7 +89,7 @@ public class MbModel implements java.io.Serializable {
         this.manufacturer = manufacturer;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CHIPSET_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public MbChipset getMbChipset() {

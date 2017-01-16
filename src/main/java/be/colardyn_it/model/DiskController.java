@@ -41,7 +41,7 @@ public class DiskController implements java.io.Serializable {
         this.controllerId = controllerId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MANUFACTURER_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public Manufacturer getManufacturer() {

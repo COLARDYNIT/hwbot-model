@@ -50,7 +50,7 @@ public class CpuSubfamily implements java.io.Serializable {
         this.subfamilyId = subfamilyId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FAMILY_ID", nullable = false)
     @NotNull
     @NotFound(action = NotFoundAction.IGNORE)
