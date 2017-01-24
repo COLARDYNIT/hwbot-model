@@ -56,6 +56,22 @@ public class Contest implements java.io.Serializable {
     private transient Contest parentContest;
     private ContestTag tag;
 
+    //2000
+    private String prizes;
+    //3000
+    private String rules;
+
+    private Boolean featured;
+    private Boolean openParticipation;
+
+    private String contestVisual;
+    private String esportsBanner;
+    //50
+    private String shortName;
+
+
+
+
     private Set<ContestModerator> contestModerators = new HashSet<ContestModerator>(0);
     private Set<ContestUser> contestUsers = new HashSet<ContestUser>(0);
     private Set<ContestTeam> contestTeams = new HashSet<ContestTeam>(0);
@@ -382,6 +398,69 @@ public class Contest implements java.io.Serializable {
 
     public void setTag(ContestTag tag) {
         this.tag = tag;
+    }
+
+
+    @Column(name = "prizes")
+    @Length(max = 2000)
+    public String getPrizes() {
+        return prizes;
+    }
+
+    public void setPrizes(String prizes) {
+        this.prizes = prizes;
+    }
+    @Column(name = "rules")
+    @Length(max = 3000)
+    public String getRules() {
+        return rules;
+    }
+
+    public void setRules(String rules) {
+        this.rules = rules;
+    }
+    @Column(name = "featured")
+    @Type(type = "yes_no")
+    public Boolean getFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(Boolean featured) {
+        this.featured = featured;
+    }
+    @Column(name = "open_participation")
+    @Type(type = "yes_no")
+    public Boolean getOpenParticipation() {
+        return openParticipation;
+    }
+
+    public void setOpenParticipation(Boolean openParticipation) {
+        this.openParticipation = openParticipation;
+    }
+    @Column(name = "contest_visual")
+    public String getContestVisual() {
+        return contestVisual;
+    }
+
+    public void setContestVisual(String contestVisual) {
+        this.contestVisual = contestVisual;
+    }
+    @Column(name = "esports_banner")
+    public String getEsportsBanner() {
+        return esportsBanner;
+    }
+
+    public void setEsportsBanner(String esportsBanner) {
+        this.esportsBanner = esportsBanner;
+    }
+    @Column(name = "short_name")
+    @Length(max = 50)
+    public String getShortName() {
+        return shortName;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 
     @Override
