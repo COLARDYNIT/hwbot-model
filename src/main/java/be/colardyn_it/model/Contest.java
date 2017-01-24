@@ -5,6 +5,7 @@ package be.colardyn_it.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -114,6 +115,7 @@ public class Contest implements java.io.Serializable {
 
     @Column(name = "NAME", unique = true, nullable = false)
     @NotNull
+    @Length(max = 255, min = 1)
     public String getName() {
         return this.name;
     }
@@ -124,7 +126,7 @@ public class Contest implements java.io.Serializable {
 
     @Column(name = "SAFE_NAME", unique = true, nullable = false, length = 255)
     @NotNull
-    @Length(max = 255)
+    @Length(max = 255, min = 1)
     public String getSafeName() {
         return this.safeName;
     }
@@ -145,6 +147,8 @@ public class Contest implements java.io.Serializable {
     }
 
     @Column(name = "LEVEL")
+    @ColumnDefault(value = "0")
+    @NotNull
     public Integer getLevel() {
         return this.level;
     }
@@ -166,7 +170,7 @@ public class Contest implements java.io.Serializable {
 
     @Column(name = "COMPETITOR_TYPE", nullable = false, length = 20)
     @NotNull
-    @Length(max = 20)
+    @Length(max = 20, min = 1)
     public String getCompetitorType() {
         return this.competitorType;
     }
@@ -300,7 +304,8 @@ public class Contest implements java.io.Serializable {
 
     @Column(name = "event")
     @Type(type = "yes_no")
-    //  @NotNull
+    @NotNull
+    @ColumnDefault(value = "no")
     public Boolean getEvent() {
         return event;
     }
@@ -311,7 +316,7 @@ public class Contest implements java.io.Serializable {
 
     @Column(name = "not_hosted")
     @Type(type = "yes_no")
-    // @NotNull
+    @ColumnDefault(value = "no")
     public Boolean getNotHosted() {
         return notHosted;
     }
@@ -322,7 +327,7 @@ public class Contest implements java.io.Serializable {
 
     @Column(name = "challenge")
     @Type(type = "yes_no")
-    //  @NotNull
+    @ColumnDefault(value = "no")
     public Boolean getChallenge() {
         return challenge;
     }
@@ -333,7 +338,7 @@ public class Contest implements java.io.Serializable {
 
     @Column(name = "focus")
     @Type(type = "yes_no")
-    //   @NotNull
+    @ColumnDefault(value = "no")
     public Boolean getFocus() {
         return focus;
     }
@@ -378,7 +383,6 @@ public class Contest implements java.io.Serializable {
         this.twitterHash = twitterHash;
     }
 
-    // uncomment when 4.6.9 is in production
     @ManyToOne(optional = true)
     @JoinColumn(name = "parent_contest_id", referencedColumnName = "contest_id")
     public Contest getParentContest() {
