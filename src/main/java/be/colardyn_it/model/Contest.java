@@ -425,6 +425,7 @@ public class Contest implements java.io.Serializable {
     }
     @Column(name = "featured")
     @Type(type = "yes_no")
+    @ColumnDefault(value = "no")
     public Boolean getFeatured() {
         return featured;
     }
@@ -434,6 +435,7 @@ public class Contest implements java.io.Serializable {
     }
     @Column(name = "open_participation")
     @Type(type = "yes_no")
+    @ColumnDefault(value = "yes")
     public Boolean getOpenParticipation() {
         return openParticipation;
     }
