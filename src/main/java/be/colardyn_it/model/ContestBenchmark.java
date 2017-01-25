@@ -37,6 +37,8 @@ public class ContestBenchmark implements java.io.Serializable {
     private String config;
     private String rankingType;
     private String pointsDistribution;
+    private String excerptLead;
+    private String excerpt;
     private Integer type = 1;
     private Set<BenchmarkLimitation> benchmarkLimitations = new HashSet<BenchmarkLimitation>(0);
 
@@ -160,6 +162,26 @@ public class ContestBenchmark implements java.io.Serializable {
 
     public void setPointsDistribution(String pointsDistribution) {
         this.pointsDistribution = pointsDistribution;
+    }
+
+    @Column(name = "EXCERPT", columnDefinition = "longtext")
+    @Lob
+    public String getExcerpt() {
+        return excerpt;
+    }
+
+    public void setExcerpt(String excerpt) {
+        this.excerpt = excerpt;
+    }
+
+    @Column(name = "EXCERPT_LEAD", columnDefinition = "longtext")
+    @Lob
+    public String getExcerptLead() {
+        return excerptLead;
+    }
+
+    public void setExcerptLead(String excerptLead) {
+        this.excerptLead = excerptLead;
     }
 
 }
