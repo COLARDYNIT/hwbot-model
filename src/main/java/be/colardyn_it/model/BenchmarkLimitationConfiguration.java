@@ -3,10 +3,9 @@ package be.colardyn_it.model;
 // Generated Jul 23, 2009 9:36:51 PM by Hibernate Tools 3.2.2.GA
 
 
-import org.hibernate.validator.constraints.Length;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -63,7 +62,7 @@ public class BenchmarkLimitationConfiguration implements java.io.Serializable {
 
     @Column(name = "CONFIG_KEY", nullable = false, length = 50)
     @NotNull
-    @Length(max = 50)
+    @Size(max = 50)
     public String getConfigKey() {
         return this.configKey;
     }

@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -55,18 +55,12 @@ public class Contest implements java.io.Serializable {
     private String twitterHash;
     private transient Contest parentContest;
     private ContestTag tag;
-
-    //2000
     private String prizes;
-    //3000
     private String rules;
-
     private Boolean featured;
     private Boolean openParticipation;
-
     private String contestVisual;
     private String esportsBanner;
-    //50
     private String shortName;
 
 
@@ -124,7 +118,7 @@ public class Contest implements java.io.Serializable {
 
     @Column(name = "SAFE_NAME", unique = true, nullable = false, length = 255)
     @NotNull
-    @Length(max = 255)
+    @Size(max = 255)
     public String getSafeName() {
         return this.safeName;
     }
@@ -166,7 +160,7 @@ public class Contest implements java.io.Serializable {
 
     @Column(name = "COMPETITOR_TYPE", nullable = false, length = 20)
     @NotNull
-    @Length(max = 20)
+    @Size(max = 20)
     public String getCompetitorType() {
         return this.competitorType;
     }
@@ -402,7 +396,7 @@ public class Contest implements java.io.Serializable {
 
 
     @Column(name = "prizes")
-    @Length(max = 2000)
+    @Size(max = 2000)
     public String getPrizes() {
         return prizes;
     }
@@ -411,7 +405,7 @@ public class Contest implements java.io.Serializable {
         this.prizes = prizes;
     }
     @Column(name = "rules")
-    @Length(max = 3000)
+    @Size(max = 3000)
     public String getRules() {
         return rules;
     }
@@ -454,7 +448,7 @@ public class Contest implements java.io.Serializable {
         this.esportsBanner = esportsBanner;
     }
     @Column(name = "short_name")
-    @Length(max = 50)
+    @Size(max = 50)
     public String getShortName() {
         return shortName;
     }

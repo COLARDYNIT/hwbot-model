@@ -4,10 +4,10 @@ package be.colardyn_it.model;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -113,7 +113,7 @@ public class BenchmarkLimitationType implements java.io.Serializable {
     }
 
     @Column(name = "TYPE", length = 40)
-    @Length(max = 40)
+    @Size(max = 40)
     public String getType() {
         return this.type;
     }
