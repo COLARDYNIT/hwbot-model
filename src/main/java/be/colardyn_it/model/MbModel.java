@@ -3,6 +3,10 @@ package be.colardyn_it.model;
 // Generated Apr 14, 2009 1:43:35 PM by Hibernate Tools 3.2.2.GA
 
 import be.colardyn_it.util.StringUtil;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -18,6 +22,10 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "mb_model")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class MbModel implements java.io.Serializable {
 
     private Integer modelId;
@@ -26,29 +34,8 @@ public class MbModel implements java.io.Serializable {
     private MbChipset mbChipset;
     private String name;
     private String safeName;
-    private Boolean visible;
+    private Boolean visible = true;
     private Date releaseDate;
-
-
-
-    private volatile Boolean selected;
-
-    public MbModel() {
-    }
-
-    public MbModel(Socket socket, String name, Boolean visible) {
-        this.socket = socket;
-        this.name = name;
-        this.visible = visible;
-    }
-
-    public MbModel(Socket socket, Manufacturer manufacturer, MbChipset mbChipset, String name, Boolean visible) {
-        this.socket = socket;
-        this.manufacturer = manufacturer;
-        this.mbChipset = mbChipset;
-        this.name = name;
-        this.visible = visible;
-    }
 
     @PrePersist
     @PreUpdate
@@ -130,15 +117,6 @@ public class MbModel implements java.io.Serializable {
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
-    }
-
-    @javax.persistence.Transient
-    public Boolean getSelected() {
-        return selected;
-    }
-
-    public void setSelected(Boolean selected) {
-        this.selected = selected;
     }
 
 }

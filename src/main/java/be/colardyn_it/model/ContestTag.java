@@ -2,7 +2,13 @@ package be.colardyn_it.model;
 // Generated 26-nov-2012 19:32:06 by Hibernate Tools 3.4.0.CR1
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -11,6 +17,10 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "contest_tag")
+@Builder
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class ContestTag implements java.io.Serializable {
 
 
@@ -19,21 +29,6 @@ public class ContestTag implements java.io.Serializable {
     private String fullName;
     private String css;
     private Integer scheduleSortOrder;
-
-    public ContestTag() {
-    }
-
-
-    public ContestTag(String tag) {
-        this.tag = tag;
-    }
-
-    public ContestTag(String tag, String fullName, String css, Integer scheduleSortOrder) {
-        this.tag = tag;
-        this.fullName = fullName;
-        this.css = css;
-        this.scheduleSortOrder = scheduleSortOrder;
-    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -50,6 +45,7 @@ public class ContestTag implements java.io.Serializable {
 
 
     @Column(name = "tag", nullable = false, length = 20)
+    @NotNull
     public String getTag() {
         return this.tag;
     }

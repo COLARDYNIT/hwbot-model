@@ -2,6 +2,10 @@ package be.colardyn_it.model;
 
 // Generated Jul 23, 2009 9:36:51 PM by Hibernate Tools 3.2.2.GA
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
@@ -14,14 +18,15 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "contest_team", uniqueConstraints = @UniqueConstraint(columnNames = {"CONTEST_ID", "TEAM_ID"}))
+@Builder
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class ContestTeam implements java.io.Serializable {
 
     private Integer contestTeamId;
     private Team team;
     private Contest contest;
-
-    public ContestTeam() {
-    }
 
     public ContestTeam(Team team, Contest contest) {
         this.team = team;

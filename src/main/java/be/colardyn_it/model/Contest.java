@@ -2,9 +2,11 @@ package be.colardyn_it.model;
 
 // Generated Jul 23, 2009 9:36:51 PM by Hibernate Tools 3.2.2.GA
 
+import be.colardyn_it.util.StringUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -26,6 +28,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Contest implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,10 +48,10 @@ public class Contest implements java.io.Serializable {
     private String email;
     private String password;
     private Integer daysHiddenBeforeStart;
-    private Boolean event;
-    private Boolean notHosted;
-    private Boolean challenge;
-    private Boolean focus;
+    private Boolean event = false;
+    private Boolean notHosted = false;
+    private Boolean challenge = false;
+    private Boolean focus = false;
     private String css;
     private String inlineCss;
     private String partnerImage;
@@ -63,15 +66,18 @@ public class Contest implements java.io.Serializable {
     private String esportsBanner;
     private String shortName;
 
-
-
-
     private Set<ContestModerator> contestModerators = new HashSet<ContestModerator>(0);
     private Set<ContestUser> contestUsers = new HashSet<ContestUser>(0);
     private Set<ContestTeam> contestTeams = new HashSet<ContestTeam>(0);
     private Set<ContestBenchmark> contestBenchmarks = new HashSet<ContestBenchmark>(0);
     private Set<ContestAchievement> contestAchievements = new HashSet<ContestAchievement>(0);
     private Set<ContestLimitation> contestLimitations = new HashSet<ContestLimitation>(0);
+
+    @PrePersist
+    @PreUpdate
+    public void checkSafeName() {
+        this.safeName = StringUtil.makeUrlSafe(name);
+    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

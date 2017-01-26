@@ -3,6 +3,7 @@ package be.colardyn_it.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 
@@ -19,6 +20,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class User implements java.io.Serializable {
 
     private Integer userId;

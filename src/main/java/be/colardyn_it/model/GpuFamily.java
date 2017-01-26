@@ -3,6 +3,10 @@ package be.colardyn_it.model;
 // Generated Apr 8, 2009 11:16:30 AM by Hibernate Tools 3.2.2.GA
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.validator.constraints.Length;
@@ -20,6 +24,10 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "gpu_family", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class GpuFamily implements java.io.Serializable {
 
     private Integer familyId;
@@ -27,21 +35,6 @@ public class GpuFamily implements java.io.Serializable {
     private String name;
     private Date launchDate;
     private Set<GpuCore> gpuCores = new HashSet<GpuCore>(0);
-
-    public GpuFamily() {
-    }
-
-    public GpuFamily(Manufacturer manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public GpuFamily(Manufacturer manufacturer, String name, Date launchDate,
-                     Set<GpuCore> gpuCores) {
-        this.manufacturer = manufacturer;
-        this.name = name;
-        this.launchDate = launchDate;
-        this.gpuCores = gpuCores;
-    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

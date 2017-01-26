@@ -34,13 +34,13 @@ public class CpuModel implements java.io.Serializable {
     private Socket socket;
     private CpuSubfamily cpuSubfamily;
     private CpuCore cpuCore;
-    private int cores;
+    private int cores = 1;
     private String keywords;
     private String model;
     private Integer mhz;
     private Integer fsb;
     private BigDecimal thermalheat;
-    private Boolean marked;
+    private Boolean marked = false;
     private String safeName;
     private Date releaseDate;
 

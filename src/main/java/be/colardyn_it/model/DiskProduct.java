@@ -3,6 +3,10 @@ package be.colardyn_it.model;
 // Generated Apr 14, 2009 1:43:35 PM by Hibernate Tools 3.2.2.GA
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
@@ -17,6 +21,10 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "disk_productgroup")
+@Builder
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class DiskProduct implements java.io.Serializable {
 
     private Integer groupId;
@@ -25,17 +33,6 @@ public class DiskProduct implements java.io.Serializable {
     private DiskType diskType;
     private String name;
     private Date releaseDate;
-
-
-    public DiskProduct() {
-    }
-
-    public DiskProduct(DiskController diskController, Manufacturer manufacturer, String name, DiskType diskType) {
-        this.diskController = diskController;
-        this.manufacturer = manufacturer;
-        this.name = name;
-        this.diskType = diskType;
-    }
 
     @Id()
     @GeneratedValue(strategy = IDENTITY)

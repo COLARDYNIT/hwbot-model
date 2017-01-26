@@ -62,6 +62,7 @@ public class CpuFamily implements java.io.Serializable {
 
     @Column(name = "NAME", unique = true, length = 50)
     @Length(max = 50)
+    @NotNull
     public String getName() {
         return this.name;
     }

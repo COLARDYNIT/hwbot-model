@@ -3,6 +3,10 @@ package be.colardyn_it.model;
 // Generated Apr 14, 2009 1:43:35 PM by Hibernate Tools 3.2.2.GA
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.validator.constraints.Length;
@@ -18,6 +22,10 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "socket", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
+@Builder
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Socket implements java.io.Serializable {
 
     public static final String SOCKET_TYPE_VIDEOCARD = "videocard";
@@ -27,15 +35,6 @@ public class Socket implements java.io.Serializable {
     private String name;
     private String type;
     private Set<MbModel> mbModels = new HashSet<MbModel>(0);
-
-    public Socket() {
-    }
-
-    public Socket(String name, String type, Set<MbModel> mbModels) {
-        this.name = name;
-        this.type = type;
-        this.mbModels = mbModels;
-    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

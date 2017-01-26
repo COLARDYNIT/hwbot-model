@@ -3,6 +3,11 @@ package be.colardyn_it.model;
 // Generated Jul 23, 2009 9:36:51 PM by Hibernate Tools 3.2.2.GA
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -14,14 +19,15 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "contest_user", uniqueConstraints = @UniqueConstraint(columnNames = {
         "CONTEST_ID", "USER_ID"}))
+@Builder
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class ContestUser implements java.io.Serializable {
 
     private Integer contestUserId;
     private User user;
     private Contest contest;
-
-    public ContestUser() {
-    }
 
     public ContestUser(User user, Contest contest) {
         this.user = user;

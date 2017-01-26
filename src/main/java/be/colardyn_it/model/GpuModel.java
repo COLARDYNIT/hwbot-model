@@ -3,6 +3,10 @@ package be.colardyn_it.model;
 // Generated Apr 8, 2009 11:16:30 AM by Hibernate Tools 3.2.2.GA
 
 import be.colardyn_it.util.StringUtil;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -19,13 +23,17 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "gpu_model", uniqueConstraints = @UniqueConstraint(columnNames = "MODEL"))
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class GpuModel implements java.io.Serializable {
 
     private Integer gpuId;
     private Socket socket;
     private Memory memory;
     private GpuCore gpuCore;
-    private int cores;
+    private int cores = 1;
     private String keywords;
     private String model;
     private Integer coreSpeed;
@@ -34,45 +42,13 @@ public class GpuModel implements java.io.Serializable {
     private Integer memSize;
     private String pipelines;
     private String vertexShaders;
-    private Boolean sliCapable;
-    private Boolean marked;
+    private Boolean sliCapable = true;
+    private Boolean marked = false;
     private Integer heat;
     private String rop;
     private String streamProcessors;
     private String safeName;
     private Date releaseDate;
-
-    public GpuModel() {
-    }
-
-    public GpuModel(GpuCore gpuCore, int cores, String model, Boolean sliCapable, Boolean marked) {
-        this.gpuCore = gpuCore;
-        this.cores = cores;
-        this.model = model;
-        this.sliCapable = sliCapable;
-        this.marked = marked;
-    }
-
-    public GpuModel(Socket socket, Memory memory, GpuCore gpuCore, int cores, String keywords, String model, Integer coreSpeed, Integer memSpeed, Integer memBus,
-                    Integer memSize, String pipelines, String vertexShaders, Boolean sliCapable, Boolean marked, Integer heat, String rop, String streamProcessors) {
-        this.socket = socket;
-        this.memory = memory;
-        this.gpuCore = gpuCore;
-        this.cores = cores;
-        this.keywords = keywords;
-        this.model = model;
-        this.coreSpeed = coreSpeed;
-        this.memSpeed = memSpeed;
-        this.memBus = memBus;
-        this.memSize = memSize;
-        this.pipelines = pipelines;
-        this.vertexShaders = vertexShaders;
-        this.sliCapable = sliCapable;
-        this.marked = marked;
-        this.heat = heat;
-        this.rop = rop;
-        this.streamProcessors = streamProcessors;
-    }
 
     @PrePersist
     @PreUpdate

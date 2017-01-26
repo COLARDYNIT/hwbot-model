@@ -6,9 +6,8 @@ package be.colardyn_it.model;
 import be.colardyn_it.util.StringUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -28,7 +27,9 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "team", uniqueConstraints = @UniqueConstraint(columnNames = "TEAMNAME"))
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Team implements java.io.Serializable {
 
     private Integer teamId;
@@ -45,34 +46,10 @@ public class Team implements java.io.Serializable {
     private boolean proOc;
     private Set<User> users = new HashSet<User>(0);
 
-    public Team() {
-    }
-
-    public Team(String teamname, int donations, int subscriptionType) {
-        this.teamname = teamname;
-        this.donations = donations;
-        this.subscriptionType = subscriptionType;
-    }
-
-    public Team(String teamname, String description, String website,
-                Date dateJoined, int donations, int subscriptionType, String subscriptionPassword, Set<User> users) {
-        this.teamname = teamname;
-        this.description = description;
-        this.website = website;
-        this.dateJoined = dateJoined;
-        this.donations = donations;
-        this.subscriptionType = subscriptionType;
-        this.subscriptionPassword = subscriptionPassword;
-        this.users = users;
-    }
-
-    @PreUpdate
     @PrePersist
-    public void print() {
-        if (StringUtils.isEmpty(safename)) {
-            safename = StringUtil.makeUrlSafe(teamname);
-        }
-        System.out.println(ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE));
+    @PreUpdate
+    public void checkSafeName() {
+        this.safename = StringUtil.makeUrlSafe(teamname);
     }
 
     @Id

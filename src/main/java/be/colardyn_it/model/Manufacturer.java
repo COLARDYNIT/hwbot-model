@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -32,9 +31,9 @@ public class Manufacturer implements java.io.Serializable {
 
     private Integer manufacturerId;
     private String name;
-    private String color;
+    private String color = "#CCCCCC";
     private String website;
-    private Boolean visible;
+    private Boolean visible = true;
     private String description;
     private Set<MbModel> mbModels = new HashSet<MbModel>(0);
     private Set<MbChipset> mbChipsets = new HashSet<MbChipset>(0);
@@ -84,7 +83,6 @@ public class Manufacturer implements java.io.Serializable {
     @Column(name = "VISIBLE", nullable = false)
     @NotNull
     @Type(type = "yes_no")
-    @ColumnDefault(value = "Y")
     public Boolean getVisible() {
         return this.visible;
     }

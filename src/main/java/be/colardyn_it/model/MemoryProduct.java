@@ -2,6 +2,10 @@ package be.colardyn_it.model;
 
 // Generated Apr 8, 2009 11:16:30 AM by Hibernate Tools 3.2.2.GA
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -18,23 +22,17 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "memoryproductgroup", uniqueConstraints = @UniqueConstraint(columnNames = "label"))
+@Builder
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class MemoryProduct implements java.io.Serializable {
 
     private Integer memproductgroupId;
     private Manufacturer manufacturer;
     private String label;
-    private Boolean visible;
+    private Boolean visible = true;
     private Date releaseDate;
-
-
-    public MemoryProduct() {
-    }
-
-    public MemoryProduct(Manufacturer manufacturer, String label, Boolean visible) {
-        this.manufacturer = manufacturer;
-        this.label = label;
-        this.visible = visible;
-    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

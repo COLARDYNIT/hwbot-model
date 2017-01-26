@@ -2,6 +2,10 @@ package be.colardyn_it.model;
 
 // Generated Apr 8, 2009 11:16:30 AM by Hibernate Tools 3.2.2.GA
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -17,21 +21,16 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "memoryrating", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
+@Builder
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Memoryrating implements java.io.Serializable {
 
     private Integer memratingId;
     private Memory memory;
     private String name;
-    private Boolean visible;
-
-    public Memoryrating() {
-    }
-
-    public Memoryrating(Memory memory, String name, Boolean visible) {
-        this.memory = memory;
-        this.name = name;
-        this.visible = visible;
-    }
+    private Boolean visible = true;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

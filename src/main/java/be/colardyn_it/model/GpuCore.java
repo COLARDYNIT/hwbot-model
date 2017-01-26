@@ -2,6 +2,10 @@ package be.colardyn_it.model;
 
 // Generated Apr 8, 2009 11:16:30 AM by Hibernate Tools 3.2.2.GA
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -20,6 +24,10 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "gpu_core", uniqueConstraints = @UniqueConstraint(columnNames = "CODENAME"))
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class GpuCore implements java.io.Serializable {
 
     private Integer coreId;
@@ -31,25 +39,6 @@ public class GpuCore implements java.io.Serializable {
     private BigDecimal voltage;
     private BigDecimal manufacturingProcess;
     private Set<GpuModel> gpuModels = new HashSet<GpuModel>(0);
-
-    public GpuCore() {
-    }
-
-    public GpuCore(GpuFamily gpuFamily) {
-        this.gpuFamily = gpuFamily;
-    }
-
-    public GpuCore(GpuFamily gpuFamily, Integer directxId, Integer openglId, String codename,
-                   BigDecimal shaderModel, BigDecimal voltage, BigDecimal manufacturingProcess, Set<GpuModel> gpuModels) {
-        this.gpuFamily = gpuFamily;
-        this.directxId = directxId;
-        this.openglId = openglId;
-        this.codename = codename;
-        this.shaderModel = shaderModel;
-        this.voltage = voltage;
-        this.manufacturingProcess = manufacturingProcess;
-        this.gpuModels = gpuModels;
-    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
