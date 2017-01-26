@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -61,7 +62,6 @@ public class Manufacturer implements java.io.Serializable {
     }
 
     @Column(name = "COLOR", nullable = false, length = 7)
-    @NotNull
     @Length(max = 7)
     public String getColor() {
         return this.color;
@@ -84,6 +84,7 @@ public class Manufacturer implements java.io.Serializable {
     @Column(name = "VISIBLE", nullable = false)
     @NotNull
     @Type(type = "yes_no")
+    @ColumnDefault(value = "Y")
     public Boolean getVisible() {
         return this.visible;
     }
