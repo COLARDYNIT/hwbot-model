@@ -15,7 +15,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "contest_limitation")
 @Builder
-@ToString
+@ToString(exclude = {"benchmarkLimitationType","contest"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContestLimitation implements Serializable {

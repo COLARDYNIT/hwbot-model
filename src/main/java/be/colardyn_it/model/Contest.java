@@ -28,7 +28,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = {"contestBenchmarks","contestLimitations","parentContest"})
 public class Contest implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;

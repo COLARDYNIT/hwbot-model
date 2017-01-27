@@ -24,7 +24,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "contest_benchmark")
 @Builder
-@ToString
+@ToString(exclude = {"contest","benchmarkLimitations"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContestBenchmark implements java.io.Serializable {
