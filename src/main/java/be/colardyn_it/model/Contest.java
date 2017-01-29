@@ -114,6 +114,7 @@ public class Contest implements java.io.Serializable {
 
     @Column(name = "NAME", unique = true, nullable = false)
     @NotNull
+    @Size(min = 1, max = 255)
     public String getName() {
         return this.name;
     }
