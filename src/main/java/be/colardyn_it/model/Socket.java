@@ -23,7 +23,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "socket", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
 @Builder
-@ToString(exclude = {"mbModels"})
+@ToString(exclude = "mbModels")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Socket implements java.io.Serializable {
