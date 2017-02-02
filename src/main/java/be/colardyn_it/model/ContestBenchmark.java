@@ -12,6 +12,7 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -122,6 +123,7 @@ public class ContestBenchmark implements java.io.Serializable {
     }
 
     @Column(name = "LABEL", nullable = true, length = 255)
+    @Size(min = 1,max = 255)
     public String getLabel() {
         return label;
     }

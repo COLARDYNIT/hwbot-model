@@ -26,7 +26,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "cpu_core")
 @Builder
-@ToString
+@ToString(exclude = {"cpuFamily","cpuModels"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class CpuCore implements java.io.Serializable {
