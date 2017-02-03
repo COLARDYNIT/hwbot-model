@@ -73,7 +73,7 @@ public class BenchmarkLimitation implements java.io.Serializable {
         this.contestBenchmark = contestBenchmark;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "benchmarkLimitation")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "benchmarkLimitation")
     public Set<BenchmarkLimitationConfiguration> getBenchmarkLimitationConfigurations() {
         return this.benchmarkLimitationConfigurations;
     }
