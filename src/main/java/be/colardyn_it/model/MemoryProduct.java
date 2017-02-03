@@ -23,7 +23,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "memoryproductgroup", uniqueConstraints = @UniqueConstraint(columnNames = "label"))
 @Builder
-@ToString
+@ToString(exclude = {"manufacturer"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemoryProduct implements java.io.Serializable {

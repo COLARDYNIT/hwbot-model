@@ -22,7 +22,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "disk_productgroup")
 @Builder
-@ToString
+@ToString(exclude = {"manufacturer","diskController","diskType"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class DiskProduct implements java.io.Serializable {

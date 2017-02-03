@@ -23,7 +23,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude={"gpuModel","memory","manufacturer"})
 public class GpuProduct implements java.io.Serializable {
 
     private Integer gpuProductId;
