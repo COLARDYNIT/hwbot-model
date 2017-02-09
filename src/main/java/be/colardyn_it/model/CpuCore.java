@@ -26,7 +26,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "cpu_core")
 @Builder
-@ToString(exclude = {"cpuFamily","cpuModels"})
+@ToString(exclude = {"cpuFamily","cpuModels","cpuArchitecture"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class CpuCore implements java.io.Serializable {
@@ -43,6 +43,7 @@ public class CpuCore implements java.io.Serializable {
     private Integer size;
     private Integer transistors;
     private Date launchDate;
+    private CpuArchitecture cpuArchitecture;
     private Set<CpuModel> cpuModels = new HashSet<CpuModel>(0);
 
     @Id
@@ -171,4 +172,14 @@ public class CpuCore implements java.io.Serializable {
         this.cpuModels = cpuModels;
     }
 
+    public CpuArchitecture getCpuArchitecture() {
+        return cpuArchitecture;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ARCHITECTURE_ID")
+    @NotFound(action = NotFoundAction.IGNORE)
+    public void setCpuArchitecture(CpuArchitecture cpuArchitecture) {
+        this.cpuArchitecture = cpuArchitecture;
+    }
 }
