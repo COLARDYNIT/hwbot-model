@@ -172,13 +172,13 @@ public class CpuCore implements java.io.Serializable {
         this.cpuModels = cpuModels;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ARCHITECTURE_ID")
+    @NotFound(action = NotFoundAction.IGNORE)
     public CpuArchitecture getCpuArchitecture() {
         return cpuArchitecture;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ARCHITECTURE_ID")
-    @NotFound(action = NotFoundAction.IGNORE)
     public void setCpuArchitecture(CpuArchitecture cpuArchitecture) {
         this.cpuArchitecture = cpuArchitecture;
     }
