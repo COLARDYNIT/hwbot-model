@@ -4,6 +4,7 @@ package be.colardyn_it.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -32,9 +33,12 @@ public class Socket implements java.io.Serializable {
     public static final String SOCKET_TYPE_VIDEOCARD = "videocard";
     public static final String SOCKET_TYPE_PROCESSOR = "processor";
 
+    @JsonProperty("id")
     private Integer socketId;
     private String name;
     private String type;
+
+    @JsonIgnore
     private Set<MbModel> mbModels = new HashSet<MbModel>(0);
 
     @Id
@@ -68,7 +72,6 @@ public class Socket implements java.io.Serializable {
         this.type = type;
     }
 
-    @JsonIgnore
     @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "socket")
     @NotFound(action = NotFoundAction.IGNORE)
     public Set<MbModel> getMbModels() {
