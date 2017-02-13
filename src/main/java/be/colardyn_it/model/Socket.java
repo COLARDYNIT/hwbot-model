@@ -3,6 +3,7 @@ package be.colardyn_it.model;
 // Generated Apr 14, 2009 1:43:35 PM by Hibernate Tools 3.2.2.GA
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -67,6 +68,7 @@ public class Socket implements java.io.Serializable {
         this.type = type;
     }
 
+    @JsonIgnore
     @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "socket")
     @NotFound(action = NotFoundAction.IGNORE)
     public Set<MbModel> getMbModels() {
