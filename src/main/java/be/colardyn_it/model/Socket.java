@@ -3,6 +3,8 @@ package be.colardyn_it.model;
 // Generated Apr 14, 2009 1:43:35 PM by Hibernate Tools 3.2.2.GA
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -31,9 +33,12 @@ public class Socket implements java.io.Serializable {
     public static final String SOCKET_TYPE_VIDEOCARD = "videocard";
     public static final String SOCKET_TYPE_PROCESSOR = "processor";
 
+    @JsonProperty("id")
     private Integer socketId;
     private String name;
     private String type;
+
+    @JsonIgnore
     private Set<MbModel> mbModels = new HashSet<MbModel>(0);
 
     @Id
