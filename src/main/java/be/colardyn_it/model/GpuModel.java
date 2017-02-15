@@ -78,7 +78,7 @@ public class GpuModel implements java.io.Serializable {
         this.socket = socket;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEM_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public Memory getMemory() {
