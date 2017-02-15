@@ -76,7 +76,9 @@ public class Contest implements java.io.Serializable {
     @PrePersist
     @PreUpdate
     public void checkSafeName() {
-        this.safeName = StringUtil.makeUrlSafe(name);
+        if (this.safeName == null || this.safeName.isEmpty()) {
+            this.safeName = StringUtil.makeUrlSafe(name);
+        }
     }
 
     @Id
