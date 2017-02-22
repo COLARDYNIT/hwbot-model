@@ -20,7 +20,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "contest_moderator", uniqueConstraints = @UniqueConstraint(columnNames = {
         "CONTEST_ID", "USER_ID"}))
 @Builder
-@ToString
+@ToString(doNotUseGetters = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContestModerator implements java.io.Serializable {

@@ -20,7 +20,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "psu_productgroup", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 @Builder
-@ToString(exclude = {"manufacturer"})
+@ToString(doNotUseGetters = true, exclude = {"manufacturer"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class PsuProduct implements java.io.Serializable {

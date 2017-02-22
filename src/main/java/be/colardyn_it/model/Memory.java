@@ -22,7 +22,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "memory", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
 @Builder
-@ToString(exclude = {"memoryratings","gpuModels"})
+@ToString(doNotUseGetters = true, exclude = {"memoryratings","gpuModels"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class Memory implements java.io.Serializable {

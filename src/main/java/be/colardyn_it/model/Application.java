@@ -21,7 +21,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(doNotUseGetters = true)
 public class Application implements java.io.Serializable {
 
     private Integer applicationId;

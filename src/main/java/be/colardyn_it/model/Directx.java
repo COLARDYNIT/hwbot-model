@@ -18,7 +18,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "directx", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
 @Builder
-@ToString
+@ToString(doNotUseGetters = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Directx implements java.io.Serializable {

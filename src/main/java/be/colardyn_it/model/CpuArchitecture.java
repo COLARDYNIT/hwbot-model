@@ -21,7 +21,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "cpu_architecture")
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"cpuCores"})
+@ToString(doNotUseGetters = true, exclude = {"cpuCores"})
 @Builder
 public class CpuArchitecture {
 

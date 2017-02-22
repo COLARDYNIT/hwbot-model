@@ -24,7 +24,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "manufacturer", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
 @Builder
-@ToString(exclude = {"mbModels","mbChipsets"})
+@ToString(doNotUseGetters = true, exclude = {"mbModels","mbChipsets"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class Manufacturer implements java.io.Serializable {

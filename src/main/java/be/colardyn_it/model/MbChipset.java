@@ -27,7 +27,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"mbModels","manufacturer"})
+@ToString(doNotUseGetters = true, exclude = {"mbModels","manufacturer"})
 public class MbChipset implements java.io.Serializable {
 
     private Integer chipsetId;

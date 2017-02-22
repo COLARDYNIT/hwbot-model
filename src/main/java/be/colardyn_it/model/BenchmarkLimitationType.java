@@ -25,7 +25,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"benchmarkLimitations"})
+@ToString(doNotUseGetters = true, exclude = {"benchmarkLimitations"})
 public class BenchmarkLimitationType implements java.io.Serializable {
 
     private Integer typeId;

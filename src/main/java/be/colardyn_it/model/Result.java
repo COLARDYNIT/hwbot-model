@@ -19,7 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(doNotUseGetters = true)
 public class Result {
     private Integer resultId;
     private Integer contestId;

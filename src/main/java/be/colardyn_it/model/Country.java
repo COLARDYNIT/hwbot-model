@@ -20,7 +20,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "country", uniqueConstraints = @UniqueConstraint(columnNames = "CODE"))
 @Builder
-@ToString
+@ToString(doNotUseGetters = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Country implements java.io.Serializable {

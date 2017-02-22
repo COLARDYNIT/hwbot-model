@@ -20,7 +20,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(doNotUseGetters = true)
 public class User implements java.io.Serializable {
 
     private Integer userId;

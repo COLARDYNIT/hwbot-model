@@ -18,7 +18,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "contest_tag")
 @Builder
-@ToString
+@ToString(doNotUseGetters = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContestTag implements java.io.Serializable {

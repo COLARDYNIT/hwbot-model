@@ -25,7 +25,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "cpu_family", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
 @Builder
-@ToString(exclude = {"manufacturer","cpuCores","cpuSubfamilies"})
+@ToString(doNotUseGetters = true, exclude = {"manufacturer","cpuCores","cpuSubfamilies"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class CpuFamily implements java.io.Serializable {

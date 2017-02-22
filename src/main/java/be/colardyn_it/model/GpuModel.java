@@ -26,7 +26,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"memory","socket","gpuCore"})
+@ToString(doNotUseGetters = true, exclude = {"memory","socket","gpuCore"})
 public class GpuModel implements java.io.Serializable {
 
     private Integer gpuId;

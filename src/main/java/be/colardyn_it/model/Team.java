@@ -29,7 +29,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(doNotUseGetters = true)
 public class Team implements java.io.Serializable {
 
     private Integer teamId;

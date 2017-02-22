@@ -21,7 +21,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "disk_controller")
 @Builder
-@ToString(exclude = "manufacturer")
+@ToString(doNotUseGetters = true, exclude = "manufacturer")
 @AllArgsConstructor
 @NoArgsConstructor
 public class DiskController implements java.io.Serializable {

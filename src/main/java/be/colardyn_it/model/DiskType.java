@@ -19,7 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "disk_type")
 @Builder
-@ToString
+@ToString(doNotUseGetters = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class DiskType implements java.io.Serializable {

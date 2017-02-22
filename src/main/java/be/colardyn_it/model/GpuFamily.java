@@ -27,7 +27,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"manufacturer","gpuCores"})
+@ToString(doNotUseGetters = true, exclude = {"manufacturer","gpuCores"})
 public class GpuFamily implements java.io.Serializable {
 
     private Integer familyId;

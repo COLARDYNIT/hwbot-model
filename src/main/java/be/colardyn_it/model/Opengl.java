@@ -20,7 +20,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "opengl", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
 @Builder
-@ToString
+@ToString(doNotUseGetters = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Opengl implements java.io.Serializable {
