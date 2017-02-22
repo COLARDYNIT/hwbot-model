@@ -118,16 +118,4 @@ public class MbModel implements java.io.Serializable {
         this.visible = visible;
     }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "RELEASE_DATE", nullable = true)
-    public Date getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-
-
 }
