@@ -3,6 +3,10 @@ package be.colardyn_it.model;
 // Generated Apr 14, 2009 1:43:35 PM by Hibernate Tools 3.2.2.GA
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
@@ -16,19 +20,15 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "disk_controller")
+@Builder
+@ToString(doNotUseGetters = true, exclude = "manufacturer")
+@AllArgsConstructor
+@NoArgsConstructor
 public class DiskController implements java.io.Serializable {
 
     private Integer controllerId;
     private Manufacturer manufacturer;
     private String name;
-
-    public DiskController() {
-    }
-
-    public DiskController(Manufacturer manufacturer, String name) {
-        this.manufacturer = manufacturer;
-        this.name = name;
-    }
 
     @Id()
     @GeneratedValue(strategy = IDENTITY)
@@ -41,7 +41,7 @@ public class DiskController implements java.io.Serializable {
         this.controllerId = controllerId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MANUFACTURER_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public Manufacturer getManufacturer() {

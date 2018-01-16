@@ -2,12 +2,16 @@ package be.colardyn_it.model;
 
 // Generated Jul 23, 2009 9:36:51 PM by Hibernate Tools 3.2.2.GA
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -18,33 +22,19 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "benchmark_limitation_type", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(doNotUseGetters = true, exclude = {"benchmarkLimitations"})
 public class BenchmarkLimitationType implements java.io.Serializable {
 
     private Integer typeId;
     private String name;
     private String description;
     private String configurationKeys;
-    private Boolean visible;
+    private Boolean visible = true;
     private String type;
     private Set<BenchmarkLimitation> benchmarkLimitations = new HashSet<BenchmarkLimitation>(0);
-
-    public BenchmarkLimitationType() {
-    }
-
-    public BenchmarkLimitationType(String name, String description, Boolean visible) {
-        this.name = name;
-        this.description = description;
-        this.visible = visible;
-    }
-
-    public BenchmarkLimitationType(String name, String description, Boolean visible, String type,
-                                   Set<BenchmarkLimitation> benchmarkLimitations) {
-        this.name = name;
-        this.description = description;
-        this.visible = visible;
-        this.type = type;
-        this.benchmarkLimitations = benchmarkLimitations;
-    }
 
     @Transient
     public List<String> getConfigurationKeysAsList() {
@@ -54,7 +44,6 @@ public class BenchmarkLimitationType implements java.io.Serializable {
             for (String key : split) {
                 keys.add(key.trim());
             }
-            System.out.println("keys: " + keys);
             return keys;
         } else {
             return Collections.emptyList();
@@ -113,7 +102,7 @@ public class BenchmarkLimitationType implements java.io.Serializable {
     }
 
     @Column(name = "TYPE", length = 40)
-    @Length(max = 40)
+    @Size(max = 40)
     public String getType() {
         return this.type;
     }

@@ -5,12 +5,14 @@ package be.colardyn_it.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,8 +25,9 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "contest_benchmark")
 @Builder
-@NoArgsConstructor
+@ToString(doNotUseGetters = true, exclude = {"contest","benchmarkLimitations","application"})
 @AllArgsConstructor
+@NoArgsConstructor
 public class ContestBenchmark implements java.io.Serializable {
 
     private Integer contestBenchmarkId;
@@ -37,6 +40,8 @@ public class ContestBenchmark implements java.io.Serializable {
     private String config;
     private String rankingType;
     private String pointsDistribution;
+    private String excerptLead;
+    private String excerpt;
     private Integer type = 1;
     private Set<BenchmarkLimitation> benchmarkLimitations = new HashSet<BenchmarkLimitation>(0);
 
@@ -62,7 +67,7 @@ public class ContestBenchmark implements java.io.Serializable {
         this.contest = contest;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "APPLICATION_ID", nullable = false)
     @NotNull
     public Application getApplication() {
@@ -108,7 +113,7 @@ public class ContestBenchmark implements java.io.Serializable {
         this.enddate = enddate;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "contestBenchmark")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "contestBenchmark")
     public Set<BenchmarkLimitation> getBenchmarkLimitations() {
         return this.benchmarkLimitations;
     }
@@ -118,6 +123,7 @@ public class ContestBenchmark implements java.io.Serializable {
     }
 
     @Column(name = "LABEL", nullable = true, length = 255)
+    @Size(min = 1,max = 255)
     public String getLabel() {
         return label;
     }
@@ -160,6 +166,26 @@ public class ContestBenchmark implements java.io.Serializable {
 
     public void setPointsDistribution(String pointsDistribution) {
         this.pointsDistribution = pointsDistribution;
+    }
+
+    @Column(name = "EXCERPT", columnDefinition = "longtext")
+    @Lob
+    public String getExcerpt() {
+        return excerpt;
+    }
+
+    public void setExcerpt(String excerpt) {
+        this.excerpt = excerpt;
+    }
+
+    @Column(name = "EXCERPT_LEAD", columnDefinition = "longtext")
+    @Lob
+    public String getExcerptLead() {
+        return excerptLead;
+    }
+
+    public void setExcerptLead(String excerptLead) {
+        this.excerptLead = excerptLead;
     }
 
 }

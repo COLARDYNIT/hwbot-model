@@ -3,6 +3,10 @@ package be.colardyn_it.model;
 // Generated Apr 8, 2009 11:16:30 AM by Hibernate Tools 3.2.2.GA
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.validator.constraints.Length;
@@ -20,6 +24,10 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "cpu_family", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
+@Builder
+@ToString(doNotUseGetters = true, exclude = {"manufacturer","cpuCores","cpuSubfamilies"})
+@AllArgsConstructor
+@NoArgsConstructor
 public class CpuFamily implements java.io.Serializable {
 
     private Integer familyId;
@@ -28,22 +36,6 @@ public class CpuFamily implements java.io.Serializable {
     private Date launchDate;
     private Set<CpuCore> cpuCores = new HashSet<CpuCore>(0);
     private Set<CpuSubfamily> cpuSubfamilies = new HashSet<CpuSubfamily>(0);
-
-    public CpuFamily() {
-    }
-
-    public CpuFamily(Manufacturer manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public CpuFamily(Manufacturer manufacturer, String name, Date launchDate,
-                     Set<CpuCore> cpuCores, Set<CpuSubfamily> cpuSubfamilies) {
-        this.manufacturer = manufacturer;
-        this.name = name;
-        this.launchDate = launchDate;
-        this.cpuCores = cpuCores;
-        this.cpuSubfamilies = cpuSubfamilies;
-    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -56,7 +48,7 @@ public class CpuFamily implements java.io.Serializable {
         this.familyId = familyId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MANUFACTURER_ID", nullable = false)
     @NotNull
     @NotFound(action = NotFoundAction.IGNORE)
@@ -70,6 +62,7 @@ public class CpuFamily implements java.io.Serializable {
 
     @Column(name = "NAME", unique = true, length = 50)
     @Length(max = 50)
+    @NotNull
     public String getName() {
         return this.name;
     }

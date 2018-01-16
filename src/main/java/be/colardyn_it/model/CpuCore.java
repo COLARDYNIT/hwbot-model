@@ -2,6 +2,10 @@ package be.colardyn_it.model;
 
 // Generated Apr 8, 2009 11:16:30 AM by Hibernate Tools 3.2.2.GA
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -21,6 +25,10 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "cpu_core")
+@Builder
+@ToString(doNotUseGetters = true, exclude = {"cpuFamily","cpuModels","cpuArchitecture"})
+@AllArgsConstructor
+@NoArgsConstructor
 public class CpuCore implements java.io.Serializable {
 
     private Integer coreId;
@@ -35,30 +43,8 @@ public class CpuCore implements java.io.Serializable {
     private Integer size;
     private Integer transistors;
     private Date launchDate;
+    private CpuArchitecture cpuArchitecture;
     private Set<CpuModel> cpuModels = new HashSet<CpuModel>(0);
-
-    public CpuCore() {
-    }
-
-    public CpuCore(CpuFamily cpuFamily) {
-        this.cpuFamily = cpuFamily;
-    }
-
-    public CpuCore(CpuFamily cpuFamily, String codename, String name, BigDecimal manufacturingProcess, BigDecimal voltage, Integer l1cache, Integer l2cache, Integer l3cache,
-                   Integer size, Integer transistors, Date launchDate, Set<CpuModel> cpuModels) {
-        this.cpuFamily = cpuFamily;
-        this.codename = codename;
-        this.name = name;
-        this.manufacturingProcess = manufacturingProcess;
-        this.voltage = voltage;
-        this.l1cache = l1cache;
-        this.l2cache = l2cache;
-        this.l3cache = l3cache;
-        this.size = size;
-        this.transistors = transistors;
-        this.launchDate = launchDate;
-        this.cpuModels = cpuModels;
-    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -71,7 +57,7 @@ public class CpuCore implements java.io.Serializable {
         this.coreId = coreId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FAMILY_ID", nullable = false)
     @NotNull
     @NotFound(action = NotFoundAction.IGNORE)
@@ -177,7 +163,7 @@ public class CpuCore implements java.io.Serializable {
         this.launchDate = launchDate;
     }
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER, mappedBy = "cpuCore")
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "cpuCore")
     public Set<CpuModel> getCpuModels() {
         return this.cpuModels;
     }
@@ -186,4 +172,14 @@ public class CpuCore implements java.io.Serializable {
         this.cpuModels = cpuModels;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ARCHITECTURE_ID")
+    @NotFound(action = NotFoundAction.IGNORE)
+    public CpuArchitecture getCpuArchitecture() {
+        return cpuArchitecture;
+    }
+
+    public void setCpuArchitecture(CpuArchitecture cpuArchitecture) {
+        this.cpuArchitecture = cpuArchitecture;
+    }
 }

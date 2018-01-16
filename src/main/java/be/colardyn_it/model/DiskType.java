@@ -3,7 +3,13 @@ package be.colardyn_it.model;
 // Generated Apr 14, 2009 1:43:35 PM by Hibernate Tools 3.2.2.GA
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -12,17 +18,14 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "disk_type")
+@Builder
+@ToString(doNotUseGetters = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class DiskType implements java.io.Serializable {
 
     private Integer diskTypeId;
     private String name;
-
-    public DiskType() {
-    }
-
-    public DiskType(String name) {
-        this.name = name;
-    }
 
     @Id()
     @GeneratedValue(strategy = IDENTITY)
@@ -36,6 +39,7 @@ public class DiskType implements java.io.Serializable {
     }
 
     @Column(name = "NAME", nullable = false)
+    @NotNull
     public String getName() {
         return this.name;
     }

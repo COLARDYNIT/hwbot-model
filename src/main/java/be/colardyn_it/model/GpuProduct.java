@@ -4,6 +4,10 @@ package be.colardyn_it.model;
 
 
 import be.colardyn_it.util.StringUtil;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -16,6 +20,10 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "gpu_product", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(doNotUseGetters = true, exclude={"gpuModel","memory","manufacturer"})
 public class GpuProduct implements java.io.Serializable {
 
     private Integer gpuProductId;
@@ -30,22 +38,11 @@ public class GpuProduct implements java.io.Serializable {
     private String safeName;
     private String name;
 
-
-    public GpuProduct(Manufacturer manufacturer, GpuModel gpuModel, String name) {
-        this.manufacturer = manufacturer;
-        this.gpuModel = gpuModel;
-        this.name = name;
-    }
-
-    public GpuProduct() {
-    }
-
     @PrePersist
     @PreUpdate
     public void checkSafeName() {
         this.safeName = StringUtil.makeUrlSafe(name);
     }
-
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -135,7 +132,7 @@ public class GpuProduct implements java.io.Serializable {
         this.safeName = model;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "MANUFACTURER_ID")
     public Manufacturer getManufacturer() {
         return manufacturer;
@@ -145,7 +142,7 @@ public class GpuProduct implements java.io.Serializable {
         this.manufacturer = manufacturer;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "GPU_ID")
     public GpuModel getGpuModel() {
         return gpuModel;

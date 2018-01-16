@@ -3,6 +3,11 @@ package be.colardyn_it.model;
 // Generated Apr 14, 2009 1:32:23 PM by Hibernate Tools 3.2.2.GA
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -12,21 +17,14 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "directx", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
+@Builder
+@ToString(doNotUseGetters = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Directx implements java.io.Serializable {
 
     private Integer directxId;
     private String name;
-
-    public Directx() {
-    }
-
-    public Directx(String name) {
-        this.name = name;
-    }
-
-    public Directx(Integer descriptionId, String name) {
-        this.name = name;
-    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

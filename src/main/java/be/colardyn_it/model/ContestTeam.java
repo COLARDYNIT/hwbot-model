@@ -2,7 +2,10 @@ package be.colardyn_it.model;
 
 // Generated Jul 23, 2009 9:36:51 PM by Hibernate Tools 3.2.2.GA
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,14 +17,15 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "contest_team", uniqueConstraints = @UniqueConstraint(columnNames = {"CONTEST_ID", "TEAM_ID"}))
+@Builder
+@ToString(doNotUseGetters = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class ContestTeam implements java.io.Serializable {
 
     private Integer contestTeamId;
     private Team team;
     private Contest contest;
-
-    public ContestTeam() {
-    }
 
     public ContestTeam(Team team, Contest contest) {
         this.team = team;
@@ -59,11 +63,6 @@ public class ContestTeam implements java.io.Serializable {
 
     public void setContest(Contest contest) {
         this.contest = contest;
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
     }
 
 }

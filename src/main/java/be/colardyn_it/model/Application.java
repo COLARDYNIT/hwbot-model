@@ -6,6 +6,7 @@ package be.colardyn_it.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(doNotUseGetters = true)
 public class Application implements java.io.Serializable {
 
     private Integer applicationId;

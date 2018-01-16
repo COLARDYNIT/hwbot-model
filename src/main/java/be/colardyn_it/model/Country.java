@@ -3,6 +3,10 @@ package be.colardyn_it.model;
 // Generated Apr 8, 2009 11:16:30 AM by Hibernate Tools 3.2.2.GA
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -15,19 +19,15 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "country", uniqueConstraints = @UniqueConstraint(columnNames = "CODE"))
+@Builder
+@ToString(doNotUseGetters = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Country implements java.io.Serializable {
 
     private Integer countryId;
     private String code;
     private String name;
-
-    public Country() {
-    }
-
-    public Country(String code, String name) {
-        this.code = code;
-        this.name = name;
-    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

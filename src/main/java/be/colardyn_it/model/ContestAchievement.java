@@ -3,6 +3,11 @@ package be.colardyn_it.model;
 // Generated Jul 23, 2009 9:36:51 PM by Hibernate Tools 3.2.2.GA
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -13,21 +18,16 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "contest_achievement", uniqueConstraints = @UniqueConstraint(columnNames = {"LABEL", "CONTEST_ID"}))
+@Builder
+@ToString(doNotUseGetters = true, exclude = {"contest"})
+@AllArgsConstructor
+@NoArgsConstructor
 public class ContestAchievement implements java.io.Serializable {
 
     private Integer contestAchievementId;
     private Contest contest;
     private String label;
     private Integer position;
-
-
-    public ContestAchievement() {
-    }
-
-    public ContestAchievement(Contest contest, String label) {
-        this.contest = contest;
-        this.label = label;
-    }
 
     @PrePersist()
     public void prePersist() {

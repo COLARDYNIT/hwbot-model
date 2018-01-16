@@ -3,10 +3,14 @@ package be.colardyn_it.model;
 // Generated Jul 23, 2009 9:36:51 PM by Hibernate Tools 3.2.2.GA
 
 
-import org.hibernate.validator.constraints.Length;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -16,28 +20,16 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "benchmark_limitation_configuration", uniqueConstraints = @UniqueConstraint(columnNames = {
         "LIMITATION_ID", "CONFIG_KEY"}))
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(doNotUseGetters = true, exclude = {"benchmarkLimitation"})
 public class BenchmarkLimitationConfiguration implements java.io.Serializable {
 
     private Integer configurationId;
     private BenchmarkLimitation benchmarkLimitation;
     private String configKey;
     private String configValue;
-
-    public BenchmarkLimitationConfiguration() {
-    }
-
-    public BenchmarkLimitationConfiguration(BenchmarkLimitation benchmarkLimitation, String configKey,
-                                            String configValue) {
-        this.benchmarkLimitation = benchmarkLimitation;
-        this.configKey = configKey;
-        this.configValue = configValue;
-    }
-
-    @PrePersist
-    public void show() {
-        System.out.println("saving for " + benchmarkLimitation.getBenchmarkLimitationType().getName() + " with value "
-                + configValue);
-    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -63,7 +55,7 @@ public class BenchmarkLimitationConfiguration implements java.io.Serializable {
 
     @Column(name = "CONFIG_KEY", nullable = false, length = 50)
     @NotNull
-    @Length(max = 50)
+    @Size(max = 50)
     public String getConfigKey() {
         return this.configKey;
     }

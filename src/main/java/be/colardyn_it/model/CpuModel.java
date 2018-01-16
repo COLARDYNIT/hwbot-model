@@ -3,6 +3,10 @@ package be.colardyn_it.model;
 // Generated Apr 8, 2009 11:16:30 AM by Hibernate Tools 3.2.2.GA
 
 import be.colardyn_it.util.StringUtil;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -20,55 +24,25 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "cpu_model")
+@Builder
+@ToString(doNotUseGetters = true, exclude = {"socket","cpuCore","cpuSubfamily"})
+@AllArgsConstructor
+@NoArgsConstructor
 public class CpuModel implements java.io.Serializable {
 
     private Integer cpuId;
     private Socket socket;
     private CpuSubfamily cpuSubfamily;
     private CpuCore cpuCore;
-    private int cores;
+    private int cores = 1;
     private String keywords;
     private String model;
     private Integer mhz;
     private Integer fsb;
     private BigDecimal thermalheat;
-    private Boolean marked;
+    private Boolean marked = false;
     private String safeName;
     private Date releaseDate;
-
-    public CpuModel() {
-    }
-
-    public CpuModel(CpuSubfamily cpuSubfamily, CpuCore cpuCore, int cores, String model, Boolean marked) {
-        this.cpuSubfamily = cpuSubfamily;
-        this.cpuCore = cpuCore;
-        this.cores = cores;
-        this.model = model;
-        this.marked = marked;
-    }
-
-    public CpuModel(Socket socket, CpuSubfamily cpuSubfamily, CpuCore cpuCore, int cores, String keywords, String model, Integer mhz, Integer fsb, BigDecimal thermalheat,
-                    Boolean marked) {
-        this.socket = socket;
-        this.cpuSubfamily = cpuSubfamily;
-        this.cpuCore = cpuCore;
-        this.cores = cores;
-        this.keywords = keywords;
-        this.model = model;
-        this.mhz = mhz;
-        this.fsb = fsb;
-        this.thermalheat = thermalheat;
-        this.marked = marked;
-    }
-
-    @Override
-    public String toString() {
-        return "CpuModel [" + (cpuId != null ? "cpuId=" + cpuId + ", " : "") + (socket != null ? "other=" + socket + ", " : "") + (cpuSubfamily != null ? "cpuSubfamily=" + cpuSubfamily + ", " : "")
-                + (cpuCore != null ? "cpuCore=" + cpuCore + ", " : "") + "cores=" + cores + ", " + (keywords != null ? "keywords=" + keywords + ", " : "")
-                + (model != null ? "model=" + model + ", " : "") + (mhz != null ? "mhz=" + mhz + ", " : "") + (fsb != null ? "fsb=" + fsb + ", " : "")
-                + (thermalheat != null ? "thermalheat=" + thermalheat + ", " : "") + (marked != null ? "marked=" + marked + ", " : "") + (safeName != null ? "safeName=" + safeName + ", " : "")
-                + (releaseDate != null ? "releaseDate=" + releaseDate : "") + "]";
-    }
 
     @PrePersist
     @PreUpdate
@@ -87,7 +61,7 @@ public class CpuModel implements java.io.Serializable {
         this.cpuId = cpuId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SOCKET_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public Socket getSocket() {
@@ -98,7 +72,7 @@ public class CpuModel implements java.io.Serializable {
         this.socket = socket;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SUBFAMILY_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public CpuSubfamily getCpuSubfamily() {
@@ -109,7 +83,7 @@ public class CpuModel implements java.io.Serializable {
         this.cpuSubfamily = cpuSubfamily;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CORE_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public CpuCore getCpuCore() {

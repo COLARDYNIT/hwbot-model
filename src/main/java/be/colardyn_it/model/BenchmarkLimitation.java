@@ -3,7 +3,10 @@ package be.colardyn_it.model;
 // Generated Jul 23, 2009 9:36:51 PM by Hibernate Tools 3.2.2.GA
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,26 +20,16 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "benchmark_limitation")
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString(doNotUseGetters = true, exclude = {"contestBenchmark","benchmarkLimitationConfigurations","benchmarkLimitationType"})
 public class BenchmarkLimitation implements java.io.Serializable {
 
     private Integer limitationId;
     private BenchmarkLimitationType benchmarkLimitationType;
     private ContestBenchmark contestBenchmark;
     private Set<BenchmarkLimitationConfiguration> benchmarkLimitationConfigurations = new HashSet<BenchmarkLimitationConfiguration>(0);
-
-
-    public BenchmarkLimitation(BenchmarkLimitationType benchmarkLimitationType, ContestBenchmark contestBenchmark) {
-        this.benchmarkLimitationType = benchmarkLimitationType;
-        this.contestBenchmark = contestBenchmark;
-    }
-
-    public BenchmarkLimitation(BenchmarkLimitationType benchmarkLimitationType, ContestBenchmark contestBenchmark,
-                               Set<BenchmarkLimitationConfiguration> benchmarkLimitationConfigurations) {
-        this.benchmarkLimitationType = benchmarkLimitationType;
-        this.contestBenchmark = contestBenchmark;
-        this.benchmarkLimitationConfigurations = benchmarkLimitationConfigurations;
-    }
 
     @javax.persistence.Transient()
     public String getConfigValue() {
@@ -58,7 +51,7 @@ public class BenchmarkLimitation implements java.io.Serializable {
         this.limitationId = limitationId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TYPE_ID", nullable = false)
     @NotNull
     public BenchmarkLimitationType getBenchmarkLimitationType() {

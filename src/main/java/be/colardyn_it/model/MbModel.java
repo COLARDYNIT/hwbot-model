@@ -3,6 +3,10 @@ package be.colardyn_it.model;
 // Generated Apr 14, 2009 1:43:35 PM by Hibernate Tools 3.2.2.GA
 
 import be.colardyn_it.util.StringUtil;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -18,6 +22,10 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "mb_model")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(doNotUseGetters = true, exclude = {"socket","mbChipset","manufacturer"})
 public class MbModel implements java.io.Serializable {
 
     private Integer modelId;
@@ -26,28 +34,8 @@ public class MbModel implements java.io.Serializable {
     private MbChipset mbChipset;
     private String name;
     private String safeName;
-    private Boolean visible;
+    private Boolean visible = true;
     private Date releaseDate;
-
-
-    private volatile Boolean selected;
-
-    public MbModel() {
-    }
-
-    public MbModel(Socket socket, String name, Boolean visible) {
-        this.socket = socket;
-        this.name = name;
-        this.visible = visible;
-    }
-
-    public MbModel(Socket socket, Manufacturer manufacturer, MbChipset mbChipset, String name, Boolean visible) {
-        this.socket = socket;
-        this.manufacturer = manufacturer;
-        this.mbChipset = mbChipset;
-        this.name = name;
-        this.visible = visible;
-    }
 
     @PrePersist
     @PreUpdate
@@ -66,7 +54,7 @@ public class MbModel implements java.io.Serializable {
         this.modelId = modelId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SOCKET_ID", nullable = true)
     @NotFound(action = NotFoundAction.IGNORE)
     public Socket getSocket() {
@@ -77,7 +65,7 @@ public class MbModel implements java.io.Serializable {
         this.socket = socket;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MANUFACTURER_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public Manufacturer getManufacturer() {
@@ -88,7 +76,7 @@ public class MbModel implements java.io.Serializable {
         this.manufacturer = manufacturer;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CHIPSET_ID")
     @NotFound(action = NotFoundAction.IGNORE)
     public MbChipset getMbChipset() {
@@ -126,28 +114,8 @@ public class MbModel implements java.io.Serializable {
         return this.visible;
     }
 
-
     public void setVisible(Boolean visible) {
         this.visible = visible;
-    }
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "release_date", nullable = true)
-    public Date getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    @javax.persistence.Transient
-    public Boolean getSelected() {
-        return selected;
-    }
-
-    public void setSelected(Boolean selected) {
-        this.selected = selected;
     }
 
 }

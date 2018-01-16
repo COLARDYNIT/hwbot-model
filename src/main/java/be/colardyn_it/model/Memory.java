@@ -2,6 +2,10 @@ package be.colardyn_it.model;
 
 // Generated Apr 8, 2009 11:16:30 AM by Hibernate Tools 3.2.2.GA
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 
@@ -17,29 +21,17 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "memory", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
+@Builder
+@ToString(doNotUseGetters = true, exclude = {"memoryratings","gpuModels"})
+@AllArgsConstructor
+@NoArgsConstructor
 public class Memory implements java.io.Serializable {
 
     private Integer memId;
     private String name;
-    private Boolean visible;
+    private Boolean visible = true;
     private Set<GpuModel> gpuModels = new HashSet<GpuModel>(0);
     private Set<Memoryrating> memoryratings = new HashSet<Memoryrating>(0);
-
-    public Memory() {
-    }
-
-    public Memory(String name, Boolean visible) {
-        this.name = name;
-        this.visible = visible;
-    }
-
-    public Memory(String name, Boolean visible, Set<GpuModel> gpuModels,
-                  Set<Memoryrating> memoryratings) {
-        this.name = name;
-        this.visible = visible;
-        this.gpuModels = gpuModels;
-        this.memoryratings = memoryratings;
-    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -74,7 +66,7 @@ public class Memory implements java.io.Serializable {
         this.visible = visible;
     }
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER, mappedBy = "memory")
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "memory")
     public Set<GpuModel> getGpuModels() {
         return this.gpuModels;
     }
@@ -83,7 +75,7 @@ public class Memory implements java.io.Serializable {
         this.gpuModels = gpuModels;
     }
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER, mappedBy = "memory")
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "memory")
     public Set<Memoryrating> getMemoryratings() {
         return this.memoryratings;
     }

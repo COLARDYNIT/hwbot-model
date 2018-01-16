@@ -2,16 +2,18 @@ package be.colardyn_it.model;
 
 // Generated Jul 23, 2009 9:36:51 PM by Hibernate Tools 3.2.2.GA
 
+import be.colardyn_it.util.StringUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +28,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(doNotUseGetters = true, exclude = {"contestBenchmarks","contestLimitations","parentContest","contestModerators","contestUsers","contestTeams","contestAchievements"})
 public class Contest implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,6 +39,7 @@ public class Contest implements java.io.Serializable {
     private String safeName;
     private Boolean published;
     private Integer level = 0;
+    private Integer type = 1;
     private Boolean hidden;
     private String competitorType;
     private String externalurl;
@@ -45,16 +49,24 @@ public class Contest implements java.io.Serializable {
     private String email;
     private String password;
     private Integer daysHiddenBeforeStart;
-    private Boolean event;
-    private Boolean notHosted;
-    private Boolean challenge;
-    private Boolean focus;
+    private Boolean event = false;
+    private Boolean notHosted = false;
+    private Boolean challenge = false;
+    private Boolean focus = false;
     private String css;
     private String inlineCss;
     private String partnerImage;
     private String twitterHash;
     private transient Contest parentContest;
     private ContestTag tag;
+    private String prizes;
+    private String rules;
+    private Boolean featured;
+    private Boolean openParticipation;
+    private String contestVisual;
+    private String esportsBanner;
+    private String shortName;
+    private String config;
 
     private Set<ContestModerator> contestModerators = new HashSet<ContestModerator>(0);
     private Set<ContestUser> contestUsers = new HashSet<ContestUser>(0);
@@ -62,6 +74,14 @@ public class Contest implements java.io.Serializable {
     private Set<ContestBenchmark> contestBenchmarks = new HashSet<ContestBenchmark>(0);
     private Set<ContestAchievement> contestAchievements = new HashSet<ContestAchievement>(0);
     private Set<ContestLimitation> contestLimitations = new HashSet<ContestLimitation>(0);
+
+    @PrePersist
+    @PreUpdate
+    public void checkSafeName() {
+        if (this.safeName == null || this.safeName.isEmpty()) {
+            this.safeName = StringUtil.makeUrlSafe(name);
+        }
+    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -98,6 +118,7 @@ public class Contest implements java.io.Serializable {
 
     @Column(name = "NAME", unique = true, nullable = false)
     @NotNull
+    @Size(min = 1, max = 255)
     public String getName() {
         return this.name;
     }
@@ -108,7 +129,7 @@ public class Contest implements java.io.Serializable {
 
     @Column(name = "SAFE_NAME", unique = true, nullable = false, length = 255)
     @NotNull
-    @Length(max = 255)
+    @Size(max = 255)
     public String getSafeName() {
         return this.safeName;
     }
@@ -150,7 +171,7 @@ public class Contest implements java.io.Serializable {
 
     @Column(name = "COMPETITOR_TYPE", nullable = false, length = 20)
     @NotNull
-    @Length(max = 20)
+    @Size(max = 20)
     public String getCompetitorType() {
         return this.competitorType;
     }
@@ -382,6 +403,88 @@ public class Contest implements java.io.Serializable {
 
     public void setTag(ContestTag tag) {
         this.tag = tag;
+    }
+
+
+    @Column(name = "prizes")
+    @Size(max = 2000)
+    public String getPrizes() {
+        return prizes;
+    }
+
+    public void setPrizes(String prizes) {
+        this.prizes = prizes;
+    }
+    @Column(name = "rules")
+    @Size(max = 3000)
+    public String getRules() {
+        return rules;
+    }
+
+    public void setRules(String rules) {
+        this.rules = rules;
+    }
+    @Column(name = "featured")
+    @Type(type = "yes_no")
+    public Boolean getFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(Boolean featured) {
+        this.featured = featured;
+    }
+    @Column(name = "open_participation")
+    @Type(type = "yes_no")
+    public Boolean getOpenParticipation() {
+        return openParticipation;
+    }
+
+    public void setOpenParticipation(Boolean openParticipation) {
+        this.openParticipation = openParticipation;
+    }
+    @Column(name = "contest_visual")
+    public String getContestVisual() {
+        return contestVisual;
+    }
+
+    public void setContestVisual(String contestVisual) {
+        this.contestVisual = contestVisual;
+    }
+    @Column(name = "esports_banner")
+    public String getEsportsBanner() {
+        return esportsBanner;
+    }
+
+    public void setEsportsBanner(String esportsBanner) {
+        this.esportsBanner = esportsBanner;
+    }
+    @Column(name = "short_name")
+    @Size(max = 50)
+    public String getShortName() {
+        return shortName;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    @Column(name = "config")
+    @Size(max = 250)
+    public String getConfig() {
+        return config;
+    }
+
+    public void setConfig(String config) {
+        this.config = config;
+    }
+
+    @Column(name = "TYPE", nullable = false)
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     @Override
