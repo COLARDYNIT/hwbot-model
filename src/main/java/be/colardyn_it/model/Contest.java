@@ -66,7 +66,6 @@ public class Contest implements java.io.Serializable {
     private String contestVisual;
     private String esportsBanner;
     private String shortName;
-    private String config;
 
     private Set<ContestModerator> contestModerators = new HashSet<ContestModerator>(0);
     private Set<ContestUser> contestUsers = new HashSet<ContestUser>(0);
@@ -468,17 +467,7 @@ public class Contest implements java.io.Serializable {
         this.shortName = shortName;
     }
 
-    @Column(name = "config")
-    @Size(max = 250)
-    public String getConfig() {
-        return config;
-    }
-
-    public void setConfig(String config) {
-        this.config = config;
-    }
-
-    @Column(name = "TYPE", nullable = false)
+    @Column(name = "type", nullable = false)
     public Integer getType() {
         return type;
     }
