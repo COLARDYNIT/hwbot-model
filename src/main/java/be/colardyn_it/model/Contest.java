@@ -415,7 +415,7 @@ public class Contest implements java.io.Serializable {
         this.prizes = prizes;
     }
     @Column(name = "rules")
-    @Size(max = 3000)
+    @Size(max = 4000)
     public String getRules() {
         return rules;
     }
