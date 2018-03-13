@@ -63,6 +63,7 @@ public class Contest implements java.io.Serializable {
     private String rules;
     private Boolean featured;
     private Boolean openParticipation;
+    private Boolean closed;
     private String contestVisual;
     private String esportsBanner;
     private String shortName;
@@ -311,6 +312,16 @@ public class Contest implements java.io.Serializable {
 
     public void setEvent(Boolean event) {
         this.event = event;
+    }
+
+    @Column(name = "closed")
+    @Type(type = "yes_no")
+    public Boolean getClosed() {
+        return closed;
+    }
+
+    public void setClosed(Boolean closed) {
+        this.closed = closed;
     }
 
     @Column(name = "not_hosted")
