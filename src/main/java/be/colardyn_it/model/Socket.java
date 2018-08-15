@@ -11,9 +11,18 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,6 +46,7 @@ public class Socket implements java.io.Serializable {
     private Integer socketId;
     private String name;
     private String type;
+    private boolean multiSocket = false;
 
     @JsonIgnore
     private Set<MbModel> mbModels = new HashSet<MbModel>(0);
@@ -80,6 +90,16 @@ public class Socket implements java.io.Serializable {
 
     public void setMbModels(Set<MbModel> mbModels) {
         this.mbModels = mbModels;
+    }
+
+    @Column(name = "multi_socket", nullable = false)
+    @Type(type = "yes_no")
+    public Boolean getMultiSocket() {
+        return multiSocket;
+    }
+
+    public void setMultiSocket(Boolean multiSocket) {
+        this.multiSocket = multiSocket;
     }
 
 }
