@@ -11,7 +11,18 @@ import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.HashSet;
@@ -27,7 +38,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(doNotUseGetters = true, exclude = {"mbModels","manufacturer"})
+@ToString(doNotUseGetters = true, exclude = {"mbModels", "manufacturer"})
 public class MbChipset implements java.io.Serializable {
 
     private Integer chipsetId;
@@ -63,7 +74,6 @@ public class MbChipset implements java.io.Serializable {
     }
 
     @Column(name = "SAFE_NAME", nullable = false, length = 30)
-    @NotNull
     @Length(max = 30)
     public String getSafeName() {
         return this.safeName;
@@ -122,4 +132,5 @@ public class MbChipset implements java.io.Serializable {
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
+
 }
