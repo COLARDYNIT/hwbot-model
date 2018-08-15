@@ -33,6 +33,7 @@ public class MbChipset implements java.io.Serializable {
     private Integer chipsetId;
     private Manufacturer manufacturer;
     private String name;
+    private String safeName;
     private String description;
     private Boolean visible = true;
     private Set<MbModel> mbModels = new HashSet<MbModel>(0);
@@ -59,6 +60,17 @@ public class MbChipset implements java.io.Serializable {
 
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    @Column(name = "SAFE_NAME", nullable = false, length = 30)
+    @NotNull
+    @Length(max = 30)
+    public String getSafeName() {
+        return this.safeName;
+    }
+
+    public void setSafeName(String safeName) {
+        this.safeName = safeName;
     }
 
     @Column(name = "NAME", nullable = false, length = 30)
