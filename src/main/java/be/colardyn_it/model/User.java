@@ -208,7 +208,7 @@ public class User implements java.io.Serializable {
         return roles;
     }
 
-    @ManyToMany(cascade = {CascadeType.ALL}, targetEntity = Role.class)
+    @ManyToMany(cascade = {CascadeType.PERSIST}, targetEntity = Role.class)
     @JoinTable(name = "userrole",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
