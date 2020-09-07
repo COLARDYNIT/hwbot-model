@@ -3,6 +3,7 @@ package be.colardyn_it.model;
 // Generated Apr 14, 2009 1:43:35 PM by Hibernate Tools 3.2.2.GA
 
 
+import be.colardyn_it.util.StringUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -14,15 +15,8 @@ import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -45,11 +39,18 @@ public class Socket implements java.io.Serializable {
     @JsonProperty("id")
     private Integer socketId;
     private String name;
+    private String safeName;
     private String type;
     private boolean multiSocket = false;
 
     @JsonIgnore
     private Set<MbModel> mbModels = new HashSet<MbModel>(0);
+
+    @PrePersist
+    @PreUpdate
+    public void checkSafeName() {
+        this.safeName = StringUtil.makeUrlSafe(name);
+    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -70,6 +71,16 @@ public class Socket implements java.io.Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Column(name = "SAFE_NAME", nullable = false, length = 50)
+    @Length(max = 50)
+    public String getSafeName() {
+        return this.safeName;
+    }
+
+    public void setSafeName(String safeName) {
+        this.safeName = safeName;
     }
 
     @Column(name = "socket_type", length = 20)
